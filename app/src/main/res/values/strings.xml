@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">NextBeen</string>
+    <string name="nav_menu_home">Home</string>
+    <string name="nav_menu_search">Search</string>
+    <string name="nav_menu_post">Post</string>
+    <string name="nav_menu_notification">Notification</string>
+    <string name="nav_menu_profile">Profile</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
