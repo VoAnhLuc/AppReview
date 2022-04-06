@@ -79,6 +79,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
     void getCurrentLocation() {
         try {
+            currentAddress = getAddressFromCoordinate(locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER));
             locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, MIN_TIME_MS, MIN_DISTANCE, this);
         } catch (SecurityException e) {
             e.printStackTrace();
