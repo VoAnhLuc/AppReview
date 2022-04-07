@@ -1,32 +1,11 @@
 package team.no.nextbeen;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.Manifest;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.location.Address;
-import android.location.Geocoder;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
-import android.location.LocationRequest;
 import android.os.Bundle;
-import android.provider.Settings;
-
-import com.google.android.gms.location.FusedLocationProviderClient;
-
-import java.io.IOException;
-import java.util.List;
-import java.util.Locale;
 
 import team.no.nextbeen.databinding.ActivityMainBinding;
 
