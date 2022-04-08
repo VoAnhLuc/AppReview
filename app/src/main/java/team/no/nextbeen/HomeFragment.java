@@ -32,8 +32,8 @@ public class HomeFragment extends Fragment {
 
         List<ImageModel> imageModels = new ArrayList<>();
         imageModels.add(new ImageModel("Marry me", "None", "https://i.imgur.com/9qtD36C.jpeg"));
-        imageModels.add(new ImageModel("Wild plants", "None", "https://i.imgur.com/wrfFdVL.jpeg"));
-        imageModels.add(new ImageModel("The old house", "None", "https://i.imgur.com/zAXNEBD.jpeg"));
+        imageModels.add(new ImageModel("Wild plants", "", "https://i.imgur.com/wrfFdVL.jpeg"));
+        imageModels.add(new ImageModel("The old house", "yeah sure, chắc chắn rồi homie okie con dề alogaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "https://i.imgur.com/zAXNEBD.jpeg"));
 
         homeViewPager = requireView().findViewById(R.id.homeViewPager);
         homeViewPager.setAdapter(new ImageAdapter(imageModels));
