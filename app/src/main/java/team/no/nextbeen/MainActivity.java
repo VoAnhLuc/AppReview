@@ -4,14 +4,22 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
+import android.view.WindowManager;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import team.no.nextbeen.adapters.ImageAdapter;
 import team.no.nextbeen.databinding.ActivityMainBinding;
+import team.no.nextbeen.models.ImageModel;
 
-public class MainActivity extends AppCompatActivity {
+public class    MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding;
+    ViewPager2 homeViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +30,9 @@ public class MainActivity extends AppCompatActivity {
             processSelectFragment(item.getItemId());
             return true;
         });
+
         setContentView(binding.getRoot());
+
         replaceFragment(new HomeFragment());
     }
 
