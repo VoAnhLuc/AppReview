@@ -14,4 +14,7 @@
     <string name="auth_login">Login</string>
     <string name="auth_register_desc">Become a Reviewer</string>
     <string name="auth_profile">Login or Register</string>
+    <string name="auth_register_re_password">Re Password...</string>
+    <string name="auth_register_back_to_login">Already have an account!</string>
+    <string name="auth_register">Register</string>
 </resources>
