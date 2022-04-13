@@ -7,19 +7,17 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
-import android.view.WindowManager;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import team.no.nextbeen.adapters.ImageAdapter;
 import team.no.nextbeen.databinding.ActivityMainBinding;
-import team.no.nextbeen.models.ImageModel;
+import team.no.nextbeen.fragments.main.HomeFragment;
+import team.no.nextbeen.fragments.main.NotificationFragment;
+import team.no.nextbeen.fragments.main.PostFragment;
+import team.no.nextbeen.fragments.main.ProfileFragment;
+import team.no.nextbeen.fragments.main.SearchFragment;
 
-public class    MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding;
-    ViewPager2 homeViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

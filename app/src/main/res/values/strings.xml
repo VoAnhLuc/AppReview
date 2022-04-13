@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">NextBeen</string>
+    <string name="app_name">NEXTBEEN</string>
+    <string name="app_desc">Mark your review to everyone</string>
     <string name="nav_menu_home">Home</string>
     <string name="nav_menu_search">Search</string>
     <string name="nav_menu_post">Post</string>
@@ -7,4 +8,10 @@
     <string name="nav_menu_profile">Profile</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="auth_login_email">Email..</string>
+    <string name="auth_login_password">Password...</string>
+    <string name="auth_login_desc">Enter your world</string>
+    <string name="auth_login">Login</string>
+    <string name="auth_register_desc">Become a Reviewer</string>
+    <string name="auth_profile">Login or Register</string>
 </resources>
