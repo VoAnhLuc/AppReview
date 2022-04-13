@@ -17,4 +17,8 @@
     <string name="auth_register_re_password">Re Password...</string>
     <string name="auth_register_back_to_login">Already have an account!</string>
     <string name="auth_register">Register</string>
+    <string name="auth_login_notification_success">Jump in successfully!</string>
+    <string name="auth_login_notification_fail">Login failed! Something went wrong.</string>
+    <string name="auth_login_error_invalid_email">Please enter valid email address</string>
+    <string name="auth_login_error_invalid_password">Password minimum contain 6 character</string>
 </resources>
