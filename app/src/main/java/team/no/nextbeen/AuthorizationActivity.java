@@ -7,7 +7,14 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.TextView;
+
+import com.google.firebase.auth.FirebaseAuth;
+
+import team.no.nextbeen.fragments.auth.LoginFragment;
+import team.no.nextbeen.fragments.auth.RegisterFragment;
 
 public class AuthorizationActivity extends AppCompatActivity {
 
@@ -17,10 +24,13 @@ public class AuthorizationActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_authorization);
 
-        FrameLayout frameLayout = findViewById(R.id.frame_layout_auth);
+        //FrameLayout frameLayout = findViewById(R.id.frame_layout_auth);
 
-        LayoutInflater layoutInflater = LayoutInflater.from(this);
-        layoutInflater.inflate(R.layout.fragment_login, frameLayout);
+        //LayoutInflater layoutInflater = LayoutInflater.from(this);
+        //layoutInflater.inflate(R.layout.fragment_login, frameLayout);
+        replaceFragment(new LoginFragment());
+
+
     }
 
     private void replaceFragment(Fragment fragment) {

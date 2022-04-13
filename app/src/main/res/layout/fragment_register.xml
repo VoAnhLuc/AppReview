@@ -56,7 +56,7 @@
         android:layout_marginBottom="20dp" />
 
     <Button
-        android:id="@+id/buttonLogin"
+        android:id="@+id/buttonRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/auth_register"
@@ -64,7 +64,7 @@
         android:layout_marginBottom="20dp"/>
 
     <TextView
-        android:id="@+id/textViewRegister"
+        android:id="@+id/textViewLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/auth_register_back_to_login"

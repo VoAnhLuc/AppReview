@@ -3,6 +3,8 @@ package team.no.nextbeen.fragments.auth;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +19,6 @@ public class LoginFragment extends Fragment {
 
     private EditText editTextEmail, editTextPassword;
     private Button buttonLogin;
-    private TextView textViewRegister;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -38,6 +39,14 @@ public class LoginFragment extends Fragment {
         editTextEmail = requireView().findViewById(R.id.editTextEmail);
         editTextPassword = requireView().findViewById(R.id.editTextPassword);
         buttonLogin = requireView().findViewById(R.id.buttonLogin);
-        textViewRegister = requireView().findViewById(R.id.textViewRegister);
+        TextView textViewRegister = requireView().findViewById(R.id.textViewRegister);
+        textViewRegister.setOnClickListener(view -> replaceRegisterFragment());
+    }
+
+    private void replaceRegisterFragment() {
+        FragmentManager fragmentManager = getParentFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frame_layout_auth, new RegisterFragment());
+        fragmentTransaction.commit();
     }
 }
