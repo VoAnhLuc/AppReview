@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="40dp"
+    android:padding="20dp"
     tools:context=".fragments.auth.RegisterFragment">
 
     <TextView
@@ -27,6 +27,15 @@
         android:fontFamily="serif-monospace"
         android:layout_marginBottom="50dp"
         />
+
+    <EditText
+        android:id="@+id/editTextFullName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/auth_register_fullname"
+        android:autofillHints="name"
+        android:inputType="text"
+        android:layout_marginBottom="20dp"/>
 
     <EditText
         android:id="@+id/editTextEmail"

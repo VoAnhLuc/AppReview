@@ -14,14 +14,17 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 
 import team.no.nextbeen.R;
+import team.no.nextbeen.daos.DAOUser;
+import team.no.nextbeen.models.User;
 
 public class RegisterFragment extends Fragment {
 
     private FirebaseAuth mAuth;
-    private EditText editTextEmail, editTextPassword, editTextRePassword;
+    private EditText editTextFullName, editTextEmail, editTextPassword, editTextRePassword;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,6 +44,7 @@ public class RegisterFragment extends Fragment {
 
         mAuth = FirebaseAuth.getInstance();
 
+        editTextFullName = requireView().findViewById(R.id.editTextFullName);
         editTextEmail = requireView().findViewById(R.id.editTextEmail);
         editTextPassword = requireView().findViewById(R.id.editTextPassword);
         editTextRePassword = requireView().findViewById(R.id.editTextRePassword);
@@ -53,11 +57,16 @@ public class RegisterFragment extends Fragment {
     }
 
     private void processRegisterAccount() {
+        String fullName = editTextFullName.getText().toString();
         String email = editTextEmail.getText().toString();
         String password = editTextPassword.getText().toString();
         String rePassword = editTextRePassword.getText().toString();
 
-        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+        if (fullName.length() == 0) {
+            editTextEmail.setError(getString(R.string.auth_register_error_empty_fullname));
+            editTextEmail.requestFocus();
+        }
+        else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             editTextEmail.setError(getString(R.string.auth_login_error_invalid_email));
             editTextEmail.requestFocus();
         }
@@ -74,9 +83,17 @@ public class RegisterFragment extends Fragment {
         else {
             mAuth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(requireActivity(), task -> {
-                       if (task.isSuccessful()) {
-                           showNotification("Register successfully!");
-                           replaceToLoginFragment();
+                       if (task.isSuccessful() && mAuth.getCurrentUser() != null) {
+                           User user = new User();
+                           user.setEmail(email);
+                           user.setId(mAuth.getCurrentUser().getUid());
+                           user.setFullName(fullName);
+
+                           DAOUser daoUser = new DAOUser();
+                           daoUser.addUserAsync(user).addOnSuccessListener(requireActivity(), unused -> {
+                               showNotification("Register successfully!");
+                               replaceToLoginFragment();
+                           });
                        }
                        else {
                             showNotification("Register failed! Please try again later.");
