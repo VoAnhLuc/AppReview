@@ -8,4 +8,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="white_smoke">#1AB3B3B3</color>
+    <color name="white_opacity_30">#4DFFFFFF</color>
+    <color name="orange">#FF6F00</color>
+    <color name="orange_lower">#88FF6F00</color>
+    <color name="orange_opacity_20">#33FF6F00</color>
 </resources>

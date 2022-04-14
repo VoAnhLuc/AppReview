@@ -1,4 +1,4 @@
-package team.no.nextbeen;
+package team.no.nextbeen.fragments.main;
 
 import android.os.Bundle;
 
@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
+import team.no.nextbeen.R;
 import team.no.nextbeen.adapters.ImageAdapter;
 import team.no.nextbeen.models.ImageModel;
 

@@ -1,4 +1,4 @@
-package team.no.nextbeen;
+package team.no.nextbeen.fragments.main;
 
 import android.os.Bundle;
 
@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import team.no.nextbeen.R;
 
 /**
  * A simple {@link Fragment} subclass.

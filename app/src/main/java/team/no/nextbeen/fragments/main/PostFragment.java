@@ -1,4 +1,4 @@
-package team.no.nextbeen;
+package team.no.nextbeen.fragments.main;
 
 import static android.content.Context.LOCATION_SERVICE;
 
@@ -25,6 +25,8 @@ import android.widget.TextView;
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
+
+import team.no.nextbeen.R;
 
 public class PostFragment extends Fragment {
 
