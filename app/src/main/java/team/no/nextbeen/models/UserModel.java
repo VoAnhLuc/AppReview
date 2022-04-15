@@ -2,11 +2,11 @@ package team.no.nextbeen.models;
 
 import java.time.LocalDate;
 
-public class User {
+public class UserModel {
     private String id, fullName, shortId, email;
     private LocalDate dayOfBirth;
 
-    public User(String id, String fullName, String shortId, String email, LocalDate dayOfBirth) {
+    public UserModel(String id, String fullName, String shortId, String email, LocalDate dayOfBirth) {
         this.id = id;
         this.fullName = fullName;
         this.shortId = shortId;
@@ -14,7 +14,7 @@ public class User {
         this.dayOfBirth = dayOfBirth;
     }
 
-    public User() {}
+    public UserModel() {}
 
     public String getFullName() {
         return fullName;
