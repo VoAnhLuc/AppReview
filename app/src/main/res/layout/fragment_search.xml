@@ -34,7 +34,7 @@
         <ImageView
             android:layout_width="120dp"
             android:layout_height="match_parent"
-            android:src="@drawable/spaghetti_PNG110"
+            android:src="@drawable/png_pizza_15271"
             android:padding="10dp"/>
         <RelativeLayout
             android:layout_alignParentRight="true"
@@ -46,7 +46,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@drawable/bg_right"
-                android:alpha="0.3"/>
+                android:alpha="0.1"/>
 
             <ImageView
                 android:layout_width="match_parent"
@@ -61,6 +61,34 @@
                 android:layout_height="match_parent"
                 android:src="@drawable/right"
                 android:padding="15dp"/>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="110dp"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:text="Quận 1"
+                android:textAllCaps="true"
+                android:gravity="bottom"
+                android:paddingBottom="1dp"
+                android:textColor="#000"
+                android:textSize="25sp"
+                android:layout_weight="1"/>
+            <TextView
+                android:text="120 Địa điểm"
+                android:textSize="15sp"
+                android:textColor="#989898"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
 
         </RelativeLayout>
 </RelativeLayout>

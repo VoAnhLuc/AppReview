@@ -27,9 +27,10 @@
         <entry key="app/src/main/res/layout/fragment_post.xml" value="0.12056737588652482" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.12056737588652482" />
         <entry key="app/src/main/res/layout/fragment_register.xml" value="0.12056737588652482" />
-        <entry key="app/src/main/res/layout/fragment_search.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_search.xml" value="0.25" />
         <entry key="app/src/main/res/layout/image_item.xml" value="0.12056737588652482" />
         <entry key="app/src/main/res/layout/list_item.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/main_search.xml" value="0.20018115942028986" />
       </map>
     </option>
   </component>
