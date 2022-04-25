@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "416922882788",
+    "firebase_url": "https://nextbeen-notech-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "nextbeen-notech",
+    "storage_bucket": "nextbeen-notech.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:416922882788:android:86e7b275c7a0c2c2bcd2f1",
+        "android_client_info": {
+          "package_name": "team.no.nextbeen"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "416922882788-drmuljee1ho344ger7u8trg3mg62hadg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJiq5jPF_FIkVN4W8HZuM3ugvjCEVxx5g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "416922882788-drmuljee1ho344ger7u8trg3mg62hadg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

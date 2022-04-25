@@ -20,6 +20,16 @@
         <entry key="..\:/Users/tranv/AndroidStudioProjects/NextBeen/app/src/main/res/layout/fragment_search.xml" value="0.36" />
         <entry key="..\:/Users/tranv/AndroidStudioProjects/NextBeen/app/src/main/res/layout/image_item.xml" value="0.33" />
         <entry key="..\:/Users/tranv/AndroidStudioProjects/NextBeen/app/src/main/res/menu/bottom_nav_menu.xml" value="0.365625" />
+        <entry key="app/src/main/res/drawable/bg_dish.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/bg_right.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_notification.xml" value="0.12056737588652482" />
+        <entry key="app/src/main/res/layout/fragment_post.xml" value="0.12056737588652482" />
+        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.12056737588652482" />
+        <entry key="app/src/main/res/layout/fragment_register.xml" value="0.12056737588652482" />
+        <entry key="app/src/main/res/layout/fragment_search.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/image_item.xml" value="0.12056737588652482" />
+        <entry key="app/src/main/res/layout/list_item.xml" value="0.1" />
       </map>
     </option>
   </component>
