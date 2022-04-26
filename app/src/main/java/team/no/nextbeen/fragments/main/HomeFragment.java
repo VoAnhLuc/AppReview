@@ -65,6 +65,7 @@ public class HomeFragment extends Fragment {
                                     UserModel userModel = dataSnapshot.getValue(UserModel.class);
                                     if (userModel != null) {
                                         review.setShortId(userModel.getShortId());
+                                        review.setFullName(userModel.getFullName());
                                     }
                                 });
                     }

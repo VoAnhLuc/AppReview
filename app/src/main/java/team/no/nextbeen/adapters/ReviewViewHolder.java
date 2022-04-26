@@ -31,8 +31,8 @@ public class ReviewViewHolder extends RecyclerView.ViewHolder {
 
     public void setData(ReviewViewModel reviewViewModel) {
         Picasso.get().load(reviewViewModel.getImages().get(0)).into(homeImageView);
-        homeImageTitle.setText(reviewViewModel.getShortId());
-        homeImageDesc.setText(reviewViewModel.getContent());
+        homeImageTitle.setText(reviewViewModel.getFullName());
+        homeImageDesc.setText(reviewViewModel.getShortDesc(40));
 
         if (reviewViewModel.getContent().isEmpty()) {
             homeImageDesc.setVisibility(View.GONE);
