@@ -125,16 +125,6 @@ public class PostFragment extends Fragment {
             }
         });
 
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String title = editTextTitle.getText().toString();
-                String content  = editTextContent.getText().toString();
-
-                dRef.child("Title").setValue(title);
-                dRef.child("Content").setValue(content);
-            }
-        });
 
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -219,6 +209,11 @@ public class PostFragment extends Fragment {
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    String title = editTextTitle.getText().toString();
+                    String content  = editTextContent.getText().toString();
+
+                    dRef.child("Title").setValue(title);
+                    dRef.child("Content").setValue(content);
                     uploadPicture();
                 }
             });
