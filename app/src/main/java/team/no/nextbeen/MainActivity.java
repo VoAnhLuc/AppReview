@@ -8,6 +8,11 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 
 import team.no.nextbeen.databinding.ActivityMainBinding;
+import team.no.nextbeen.fragments.main.HomeFragment;
+import team.no.nextbeen.fragments.main.NotificationFragment;
+import team.no.nextbeen.fragments.main.PostFragment;
+import team.no.nextbeen.fragments.main.ProfileFragment;
+import team.no.nextbeen.fragments.main.SearchFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,7 +27,9 @@ public class MainActivity extends AppCompatActivity {
             processSelectFragment(item.getItemId());
             return true;
         });
+
         setContentView(binding.getRoot());
+
         replaceFragment(new HomeFragment());
     }
 

@@ -1,4 +1,4 @@
-package team.no.nextbeen;
+package team.no.nextbeen.fragments.main;
 
 import static android.app.Activity.RESULT_OK;
 import static android.content.Context.LOCATION_SERVICE;
@@ -48,6 +48,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
+
+import team.no.nextbeen.R;
 
 public class PostFragment extends Fragment {
 
