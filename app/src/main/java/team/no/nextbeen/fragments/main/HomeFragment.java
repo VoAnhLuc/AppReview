@@ -71,7 +71,7 @@ public class HomeFragment extends Fragment {
                     }
 
                     Collections.shuffle(reviews);
-                    homeViewPager.setAdapter(new ReviewAdapter(reviews));
+                    homeViewPager.setAdapter(new ReviewAdapter(reviews, requireContext()));
                 }
             }
 

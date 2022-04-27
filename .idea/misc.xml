@@ -5,13 +5,19 @@
       <map>
         <entry key="..\:/Users/tranv/AndroidStudioProjects/NextBeen/app/src/main/res/drawable/back.xml" value="0.1" />
         <entry key="..\:/Users/tranv/AndroidStudioProjects/NextBeen/app/src/main/res/drawable/ic_baseline_add_location_24.xml" value="0.1" />
+        <entry key="..\:/Users/tranv/AndroidStudioProjects/NextBeen/app/src/main/res/drawable/ic_baseline_arrow_back_30.xml" value="0.312" />
+        <entry key="..\:/Users/tranv/AndroidStudioProjects/NextBeen/app/src/main/res/drawable/ic_baseline_arrow_drop_down_100.xml" value="0.312" />
+        <entry key="..\:/Users/tranv/AndroidStudioProjects/NextBeen/app/src/main/res/drawable/ic_baseline_arrow_drop_down_30.xml" value="0.312" />
+        <entry key="..\:/Users/tranv/AndroidStudioProjects/NextBeen/app/src/main/res/drawable/ic_baseline_arrow_drop_up_30.xml" value="0.312" />
         <entry key="..\:/Users/tranv/AndroidStudioProjects/NextBeen/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.1" />
         <entry key="..\:/Users/tranv/AndroidStudioProjects/NextBeen/app/src/main/res/drawable/ic_baseline_notifications_24.xml" value="0.312" />
         <entry key="..\:/Users/tranv/AndroidStudioProjects/NextBeen/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.1" />
         <entry key="..\:/Users/tranv/AndroidStudioProjects/NextBeen/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.1" />
+        <entry key="..\:/Users/tranv/AndroidStudioProjects/NextBeen/app/src/main/res/drawable/ic_baseline_star_30.xml" value="0.312" />
         <entry key="..\:/Users/tranv/AndroidStudioProjects/NextBeen/app/src/main/res/drawable/ic_outline_home_24.xml" value="0.1475" />
         <entry key="..\:/Users/tranv/AndroidStudioProjects/NextBeen/app/src/main/res/drawable/text_line.xml" value="0.312" />
         <entry key="..\:/Users/tranv/AndroidStudioProjects/NextBeen/app/src/main/res/layout/activity_authorization.xml" value="0.365625" />
+        <entry key="..\:/Users/tranv/AndroidStudioProjects/NextBeen/app/src/main/res/layout/activity_detail.xml" value="0.1" />
         <entry key="..\:/Users/tranv/AndroidStudioProjects/NextBeen/app/src/main/res/layout/activity_main.xml" value="0.365625" />
         <entry key="..\:/Users/tranv/AndroidStudioProjects/NextBeen/app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="..\:/Users/tranv/AndroidStudioProjects/NextBeen/app/src/main/res/layout/fragment_login.xml" value="0.365625" />
@@ -19,6 +25,7 @@
         <entry key="..\:/Users/tranv/AndroidStudioProjects/NextBeen/app/src/main/res/layout/fragment_profile.xml" value="0.365625" />
         <entry key="..\:/Users/tranv/AndroidStudioProjects/NextBeen/app/src/main/res/layout/fragment_register.xml" value="0.1" />
         <entry key="..\:/Users/tranv/AndroidStudioProjects/NextBeen/app/src/main/res/layout/fragment_search.xml" value="0.36" />
+        <entry key="..\:/Users/tranv/AndroidStudioProjects/NextBeen/app/src/main/res/layout/gridview_item.xml" value="0.365625" />
         <entry key="..\:/Users/tranv/AndroidStudioProjects/NextBeen/app/src/main/res/layout/image_item.xml" value="0.33" />
         <entry key="..\:/Users/tranv/AndroidStudioProjects/NextBeen/app/src/main/res/menu/bottom_nav_menu.xml" value="0.365625" />
       </map>

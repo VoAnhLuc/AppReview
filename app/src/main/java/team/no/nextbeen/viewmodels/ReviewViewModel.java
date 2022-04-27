@@ -1,8 +1,9 @@
 package team.no.nextbeen.viewmodels;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class ReviewViewModel {
+public class ReviewViewModel implements Serializable {
     private String shortId, fullName, author, content, address;
     private List<String> images;
 
