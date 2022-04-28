@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import team.no.nextbeen.adapters.ImageAdapter;
 import team.no.nextbeen.viewmodels.ReviewViewModel;
@@ -36,5 +37,10 @@ public class DetailActivity extends AppCompatActivity {
 
         FrameLayout frameLayout = findViewById(R.id.flHeader);
         frameLayout.bringToFront();
+
+        TextView txtUserFullName = findViewById(R.id.txtUserFullName);
+        TextView txtContentReview = findViewById(R.id.txtContentReview);
+        txtUserFullName.setText(reviewViewModel.getFullName());
+        txtContentReview.setText(reviewViewModel.getContent());
     }
 }
