@@ -42,7 +42,9 @@ public class DetailActivity extends AppCompatActivity {
         GridView gvImages = findViewById(R.id.gvImages);
         gvImages.setAdapter(imageAdapter);
         gvImages.setOnItemClickListener((adapterView, view, i, l) -> {
-            // handle show image later
+            Intent intentImage = new Intent(getApplicationContext(), ImageActivity.class);
+            intentImage.putExtra("IMAGE_URL", reviewViewModel.getImages().get(i));
+            startActivity(intentImage);
         });
 
         FrameLayout frameLayout = findViewById(R.id.flHeader);
