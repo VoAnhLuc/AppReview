@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 import team.no.nextbeen.R;
 
@@ -16,6 +17,24 @@ import team.no.nextbeen.R;
  * create an instance of this fragment.
  */
 public class SearchFragment extends Fragment {
+
+//    ListView lsvSearch;
+////        @Override
+////        public void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.main_search);
+//        lsvSearch= findViewById(R.id.lsvSearch);
+//        ArrayList<SearchFragment> arr= new ArrayList<>();
+//        while (arr.size()<10){
+//            arr.add (new SearchFragment());
+//        }
+//        SearchAdapter adapter = new SearchAdapter(this, 0,arr) ;
+//            lsvSearch.setAdapter(adapter);
+//    }
+//
+//    private void setContentView(int main_search) {
+//    }
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -47,6 +66,7 @@ public class SearchFragment extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
+    ListView lsvSearch;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,6 +75,7 @@ public class SearchFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override

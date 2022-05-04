@@ -3,11 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F1F1F1"
+    android:background="@drawable/background"
     tools:context=".fragments.main.SearchFragment">
 
     <RelativeLayout
-        android:layout_margin="5dp"
+        android:layout_margin="15dp"
         android:layout_width="match_parent"
 
         android:layout_height="130dp">
@@ -26,15 +26,14 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="3dp"
                 android:layout_marginRight="3dp"
-                android:src="@drawable/bg_dish"
-                />
+                android:layout_marginBottom="3dp"
+                android:src="@drawable/bg_dish" />
         </RelativeLayout>
         <ImageView
             android:layout_width="120dp"
             android:layout_height="match_parent"
-            android:src="@drawable/png_pizza_15271"
+            android:src="@drawable/dish1"
             android:padding="10dp"/>
         <RelativeLayout
             android:layout_alignParentRight="true"
@@ -81,7 +80,7 @@
                 android:textSize="25sp"
                 android:layout_weight="1"/>
             <TextView
-                android:text="120 Địa điểm"
+                android:text="120 Quán ăn"
                 android:textSize="15sp"
                 android:textColor="#989898"
                 android:layout_width="match_parent"
@@ -91,6 +90,7 @@
         </LinearLayout>
 
         </RelativeLayout>
+
 </RelativeLayout>
 
 
