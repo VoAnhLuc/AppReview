@@ -40,7 +40,9 @@ public class DetailActivity extends AppCompatActivity {
 
         TextView txtUserFullName = findViewById(R.id.txtUserFullName);
         TextView txtContentReview = findViewById(R.id.txtContentReview);
+        TextView txtLocation = findViewById(R.id.txtLocation);
         txtUserFullName.setText(reviewViewModel.getFullName());
         txtContentReview.setText(reviewViewModel.getContent());
+        txtLocation.setText(reviewViewModel.getAddress());
     }
 }
