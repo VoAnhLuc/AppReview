@@ -1,6 +1,7 @@
 package team.no.nextbeen.models;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class UserModel {
     private String id, fullName, shortId, email;

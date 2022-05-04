@@ -25,6 +25,7 @@
             android:src="@drawable/ic_baseline_arrow_back_30"
             android:contentDescription="@string/detail_go_back" />
 
+        <!-- This is for rating review, handle later
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -57,6 +58,7 @@
                 android:contentDescription="@string/detail_down_vote"/>
 
         </LinearLayout>
+        -->
 
         <ImageButton
             android:id="@+id/btnTakeMark"

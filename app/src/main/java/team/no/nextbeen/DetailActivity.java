@@ -4,20 +4,30 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 import team.no.nextbeen.adapters.ImageAdapter;
 import team.no.nextbeen.viewmodels.ReviewViewModel;
 
 public class DetailActivity extends AppCompatActivity {
 
+    private FirebaseAuth mAuth;
+    private FirebaseDatabase mDatabase;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+
+        mAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance();
 
         ImageButton btnGoBack = findViewById(R.id.btnGoBack);
         btnGoBack.setOnClickListener(view -> {
