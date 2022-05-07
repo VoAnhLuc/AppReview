@@ -54,7 +54,10 @@ public class HomeFragment extends Fragment {
                 reviews = new ArrayList<>();
                 for (DataSnapshot ds : snapshot.getChildren()) {
                     ReviewViewModel reviewViewModel = ds.getValue(ReviewViewModel.class);
-                    reviews.add(reviewViewModel);
+                    if (reviewViewModel != null) {
+                        reviewViewModel.setReviewId(ds.getKey());
+                        reviews.add(reviewViewModel);
+                    }
                 }
 
                 if (reviews != null) {
@@ -71,7 +74,7 @@ public class HomeFragment extends Fragment {
                     }
 
                     Collections.shuffle(reviews);
-                    homeViewPager.setAdapter(new ReviewAdapter(reviews));
+                    homeViewPager.setAdapter(new ReviewAdapter(reviews, requireContext()));
                 }
             }
 

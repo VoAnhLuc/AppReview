@@ -24,4 +24,8 @@
     <string name="auth_login_error_password_repassword_not_match">Password and Re Password is not matched!</string>
     <string name="auth_register_fullname">Full Name...</string>
     <string name="auth_register_error_empty_fullname">Your full name can\'t be empty</string>
+    <string name="detail_mark_as_note">Mark As Note</string>
+    <string name="detail_down_vote">Down vote</string>
+    <string name="detail_up_vote">Up vote</string>
+    <string name="detail_go_back">Go back</string>
 </resources>
