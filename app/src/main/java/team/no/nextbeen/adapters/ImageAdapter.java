@@ -1,39 +1,50 @@
 package team.no.nextbeen.adapters;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 import team.no.nextbeen.R;
-import team.no.nextbeen.models.ImageModel;
 
-public class ImageAdapter extends RecyclerView.Adapter<ImageViewHolder> {
-    private final List<ImageModel> imageModels;
+public class ImageAdapter extends BaseAdapter {
+    private final List<String> images;
+    private final Context context;
 
-    public ImageAdapter(List<ImageModel> imageModels) {
-        this.imageModels = imageModels;
-    }
-
-    @NonNull
-    @Override
-    public ImageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.image_item, parent, false);
-        return new ImageViewHolder(view);
+    public ImageAdapter(List<String> images, Context context) {
+        this.images = images;
+        this.context = context;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ImageViewHolder holder, int position) {
-        holder.setData(imageModels.get(position));
+    public int getCount() {
+        return images != null ? images.size() : 0;
     }
 
     @Override
-    public int getItemCount() {
-        return imageModels == null ? 0 : imageModels.size();
+    public Object getItem(int i) {
+        return images.get(i);
+    }
+
+    @Override
+    public long getItemId(int i) {
+        return i;
+    }
+
+    @Override
+    public View getView(int i, View view, ViewGroup viewGroup) {
+        if(view == null) {
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            view = inflater.inflate(R.layout.gridview_item, viewGroup, false);
+        }
+        ImageView imageView = view.findViewById(R.id.myImage);
+        Picasso.get().load(images.get(i)).fit().centerCrop().into(imageView);
+        return view;
     }
 }

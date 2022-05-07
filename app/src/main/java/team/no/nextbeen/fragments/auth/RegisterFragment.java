@@ -14,12 +14,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 
 import team.no.nextbeen.R;
 import team.no.nextbeen.daos.DAOUser;
-import team.no.nextbeen.models.User;
+import team.no.nextbeen.models.UserModel;
 
 public class RegisterFragment extends Fragment {
 
@@ -84,9 +83,11 @@ public class RegisterFragment extends Fragment {
             mAuth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(requireActivity(), task -> {
                        if (task.isSuccessful() && mAuth.getCurrentUser() != null) {
-                           User user = new User();
+                           UserModel user = new UserModel();
                            user.setEmail(email);
                            user.setId(mAuth.getCurrentUser().getUid());
+                           user.setShortId(mAuth.getCurrentUser().getUid());
+                           user.setBio(getString(R.string.app_desc));
                            user.setFullName(fullName);
 
                            DAOUser daoUser = new DAOUser();

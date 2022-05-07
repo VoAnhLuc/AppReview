@@ -4,6 +4,7 @@
     <color name="mix_green_blue_300">#2eb19f</color>
     <color name="mix_green_blue_200">#63c2d2</color>
     <color name="mix_green_blue_100">#b7edff</color>
+    <color name="blue">#0091FF</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
