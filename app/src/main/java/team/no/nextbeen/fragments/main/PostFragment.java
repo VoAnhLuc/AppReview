@@ -148,28 +148,34 @@ public class PostFragment extends Fragment {
         btnPostReview.setOnClickListener(view -> {
             List<String> images = new ArrayList<>();
             DAOPhoto daoPhoto = new DAOPhoto();
-            for (String photo : photos) {
 
-                Uri uri = Uri.parse(photo);
-                String fileName =  System.currentTimeMillis() + "_" + getFileName(requireContext().getContentResolver(), uri);
+            if (photos == null || photos.size() == 0) {
+                Toast.makeText(getContext(), "Please select at least one image to post review", Toast.LENGTH_LONG).show();
+            }
+            else {
+                for (String photo : photos) {
 
-                daoPhoto.uploadPhotoAsync(uri, fileName).addOnSuccessListener(taskSnapshot -> {
-                    daoPhoto.getPhotoURL(fileName).addOnSuccessListener(uri1 -> {
-                        images.add(uri1.toString());
+                    Uri uri = Uri.parse(photo);
+                    String fileName =  System.currentTimeMillis() + "_" + getFileName(requireContext().getContentResolver(), uri);
 
-                        if (images.size() == photos.size()) {
-                            String address = txtReviewAddress.getText().toString();
-                            String content = txtReviewContent.getText().toString();
-                            ReviewModel reviewModel = new ReviewModel(mAuth.getUid(), content, address, images);
-                            DAOReview daoReview = new DAOReview();
-                            daoReview.addReviewAsync(reviewModel).addOnSuccessListener(unused -> {
-                                sharedPref.edit().clear().apply();
-                                Toast.makeText(getContext(), "Your review is on air now!", Toast.LENGTH_LONG).show();
-                                ((MainActivity)requireActivity()).replaceFragment(new HomeFragment());
-                            });
-                        }
+                    daoPhoto.uploadPhotoAsync(uri, fileName).addOnSuccessListener(taskSnapshot -> {
+                        daoPhoto.getPhotoURL(fileName).addOnSuccessListener(uri1 -> {
+                            images.add(uri1.toString());
+
+                            if (images.size() == photos.size()) {
+                                String address = txtReviewAddress.getText().toString();
+                                String content = txtReviewContent.getText().toString();
+                                ReviewModel reviewModel = new ReviewModel(mAuth.getUid(), content, address, images);
+                                DAOReview daoReview = new DAOReview();
+                                daoReview.addReviewAsync(reviewModel).addOnSuccessListener(unused -> {
+                                    sharedPref.edit().clear().apply();
+                                    Toast.makeText(getContext(), "Your review is on air now!", Toast.LENGTH_LONG).show();
+                                    ((MainActivity)requireActivity()).replaceFragment(new HomeFragment());
+                                });
+                            }
+                        });
                     });
-                });
+                }
             }
         });
     }

@@ -81,6 +81,7 @@ public class HomeFragment extends Fragment {
                     }
 
                     Collections.shuffle(reviews);
+                    reviewAdapter.notifyDataSetChanged();
                 }
             }
 
