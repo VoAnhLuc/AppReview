@@ -4,58 +4,86 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="10dp"
     tools:context=".fragments.main.PostFragment">
 
-    <ImageView
-        android:id="@+id/postPhoto"
+    <TextView
+        android:id="@+id/txtTitle"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:src="@mipmap/ic_launcher"
-        android:background="@drawable/vien"
-
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="@string/post_title"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:textColor="@color/orange"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
     <EditText
-        android:id="@+id/postTitle"
+        android:id="@+id/txtReviewAddress"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="340dp"
-        android:background="@drawable/vien"
-        android:hint="Title"
-        android:inputType="textCapSentences|textMultiLine"
-
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:inputType="textCapSentences"
+        android:singleLine="true"
+        android:drawableStart="@drawable/ic_baseline_location_on_16"
+        android:hint="@string/app_name"
+        android:ems="15"
+        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/txtTitle"
+        android:importantForAutofill="no"
+        android:enabled="false"
+        android:scrollbarStyle="outsideOverlay"
+        android:scrollHorizontally="true" />
 
     <EditText
-        android:id="@+id/postContent"
+        android:id="@+id/txtReviewContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:inputType="textCapSentences|textMultiLine"
+        android:hint="@string/post_content_hint"
+        android:ems="15"
+        android:textSize="15sp"
+        android:maxLines="5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtReviewAddress"
+        android:importantForAutofill="no" />
+
+    <LinearLayout
+        android:id="@+id/llImageView"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/vien"
-
-        android:hint="Content"
-        android:inputType="textCapSentences|textMultiLine"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        android:orientation="horizontal"
+        android:layout_marginTop="30dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/postTitle" />
-
-    <Button
-        android:id="@+id/postButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:text="Đăng Bài"
-
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/postContent" />
+        app:layout_constraintTop_toBottomOf="@+id/txtReviewContent">
+
+        <ImageView
+            android:id="@+id/btnAddPhoto"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/icon_addd"
+            android:layout_marginHorizontal="15dp"
+            android:layout_gravity="center"
+            android:contentDescription="@string/post_add_photo"
+            app:tint="@color/orange" />
+
+        <GridView
+            android:id="@+id/gvImages"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:numColumns="3"/>
+
+    </LinearLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

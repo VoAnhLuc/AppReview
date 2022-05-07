@@ -5,7 +5,9 @@ import static android.content.Context.LOCATION_SERVICE;
 
 import android.Manifest;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -22,7 +24,10 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.provider.Settings;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -49,11 +54,14 @@ import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
 
+import team.no.nextbeen.MainActivity;
 import team.no.nextbeen.R;
 
 public class PostFragment extends Fragment {
 
-    private String currentAddress;
+    private static final String REVIEW_SHARED_PREF = "REVIEW_SHARED_PREF";
+    private static final String CONTENT_REVIEW = "CONTENT_REVIEW";
+    public String currentAddress;
     private LocationManager locationManager;
     private ImageView imageView;
     private FirebaseStorage storage;
@@ -65,12 +73,14 @@ public class PostFragment extends Fragment {
     private FirebaseDatabase fDatabase;
     private DatabaseReference dRef;
 
+    private SharedPreferences sharedPref;
+    private EditText txtReviewContent;
+    private EditText txtReviewAddress;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            currentAddress = getArguments().getString("CURRENT_ADDRESS", "");
-        }
+        sharedPref = requireContext().getSharedPreferences(REVIEW_SHARED_PREF, Context.MODE_PRIVATE);
     }
 
     @Override
@@ -81,176 +91,47 @@ public class PostFragment extends Fragment {
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
+    public void onResume() {
+        super.onResume();
 
-        locationManager = (LocationManager) requireContext().getSystemService(LOCATION_SERVICE);
-        checkingPermission();
-        getCurrentLocation();
-
-        imageView = getActivity().findViewById(R.id.postPhoto);
-        button = getActivity().findViewById(R.id.postButton);
-        editTextTitle = getActivity().findViewById(R.id.postTitle);
-        editTextContent = getActivity().findViewById(R.id.postContent);
-
-        storage = FirebaseStorage.getInstance();
-        storageReference = storage.getReference();
-
-        fDatabase = FirebaseDatabase.getInstance();
-
-        dRef = fDatabase.getReference().child("Post");
-        dRef.child("Title").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()){
-                    editTextTitle.setText(snapshot.getValue(String.class));
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-        dRef.child("Content").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()){
-                    editTextContent.setText(snapshot.getValue(String.class));
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                choosePicture();
-            }
-        });
-
-//        if (getView() != null) {
-//            TextView textView = getView().findViewById(R.id.postTitle);
-//            textView.setText(currentAddress);
-//        }
-    }
-
-    private void choosePicture() {
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(intent, 1);
-    }
-
-    private String getAddressFromCoordinate(Location coordinate) {
-        if (coordinate == null || !isAdded()) {
-            return "";
-        }
-
-        Geocoder geocoder = new Geocoder(requireContext(), Locale.getDefault());
-        try {
-            List<Address> addressList = geocoder.getFromLocation(coordinate.getLatitude(), coordinate.getLongitude(), 1);
-            if (addressList.size() > 0) {
-                return  addressList.get(0).getAddressLine(0);
-            }
-        }
-        catch (IOException e) {
-            return "";
-        }
-
-        return "";
-    }
-
-    void getCurrentLocation() {
-        try {
-            currentAddress = getAddressFromCoordinate(locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER));
-            int MIN_TIME_MS = 1000;
-            int MIN_DISTANCE = 5;
-            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, MIN_TIME_MS, MIN_DISTANCE, location -> {
-                currentAddress = getAddressFromCoordinate(location);
-            });
-        } catch (SecurityException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void checkingPermission() {
-        // check location is turn on or off
-        if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
-                && !locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
-            new AlertDialog.Builder(requireContext())
-                    .setTitle("Enable GPS Service")
-                    .setMessage("We need your GPS location to show Near Places around you.")
-                    .setCancelable(false)
-                    .setPositiveButton("Enable", (paramDialogInterface, paramInt) ->
-                            startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)))
-                    .setNegativeButton("Cancel", null)
-                    .show();
-        }
-        // check permission access location
-        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)  {
-            ActivityCompat.requestPermissions(requireActivity(), new String[] {
-                            Manifest.permission.ACCESS_COARSE_LOCATION,
-                            Manifest.permission.ACCESS_FINE_LOCATION},
-                    1);
+        if (getArguments() != null) {
+            currentAddress = getArguments().getString("CURRENT_ADDRESS", "");
+            txtReviewAddress.setText(currentAddress);
+            txtReviewContent.setText(sharedPref.getString(CONTENT_REVIEW, ""));
         }
     }
 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode==1 && resultCode==RESULT_OK && data!=null){
-            imageUri = data.getData();
-            imageView.setImageURI(imageUri);
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    String title = editTextTitle.getText().toString();
-                    String content  = editTextContent.getText().toString();
+    public void onStart() {
+        super.onStart();
 
-                    dRef.child("Title").setValue(title);
-                    dRef.child("Content").setValue(content);
-                    uploadPicture();
-                }
-            });
+        txtReviewAddress = requireView().findViewById(R.id.txtReviewAddress);
 
-        }
+        txtReviewContent = requireView().findViewById(R.id.txtReviewContent);
+        txtReviewContent.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                saveContentReviewToSharedPref();
+            }
+        });
+
+        ImageView btnAddPhoto = requireView().findViewById(R.id.btnAddPhoto);
+        btnAddPhoto.setOnClickListener(view -> {
+
+        });
     }
 
-    private void uploadPicture() {
-        final ProgressDialog pd = new ProgressDialog(getActivity());
-        pd.setTitle("Uploading Image...");
-        pd.show();
-
-        final String randomkey = UUID.randomUUID().toString();
-        StorageReference riversRef = storageReference.child("image/" + randomkey);
-        riversRef.putFile(imageUri)
-                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        pd.dismiss();
-                        Snackbar.make(getActivity().findViewById(android.R.id.content),"Imamge Uploaded", Snackbar.LENGTH_LONG).show();
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        pd.dismiss();
-                        Toast.makeText(getContext().getApplicationContext(), "Failed To Upload", Toast.LENGTH_LONG).show();
-                    }
-                })
-                .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
-                        double progressPercent = (100.00 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
-                        pd.setMessage("Percentage: " + (int)progressPercent + "%");
-                    }
-                });
+    private void saveContentReviewToSharedPref() {
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString("CONTENT_REVIEW", txtReviewContent.getText().toString());
+        editor.apply();
     }
 }
