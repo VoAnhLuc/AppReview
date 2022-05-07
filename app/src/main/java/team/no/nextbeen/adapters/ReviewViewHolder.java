@@ -36,6 +36,7 @@ public class ReviewViewHolder extends RecyclerView.ViewHolder {
     public void setData(ReviewViewModel reviewViewModel, Context context, Integer type) {
         if (type == 0) {
             Picasso.get().load(reviewViewModel.getImages().get(0)).into(homeImageView);
+            homeImageTitle.setVisibility(View.VISIBLE);
         }
         else if (type == 1) {
             Picasso.get().load(reviewViewModel.getImages().get(0)).fit().centerCrop().into(homeImageView);

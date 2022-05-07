@@ -30,6 +30,7 @@ import team.no.nextbeen.viewmodels.ReviewViewModel;
 public class HomeFragment extends Fragment {
     ViewPager2 homeViewPager;
     private List<ReviewViewModel> reviews;
+    private ReviewAdapter reviewAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -43,6 +44,9 @@ public class HomeFragment extends Fragment {
         super.onStart();
 
         homeViewPager = requireView().findViewById(R.id.homeViewPager);
+        reviews = new ArrayList<>();
+        reviewAdapter = new ReviewAdapter(reviews, getContext(), RECYCLE_VIEW_HOME);
+        homeViewPager.setAdapter(reviewAdapter);
 
         DAOReview daoReview = new DAOReview();
         daoReview.getDatabaseReference().addValueEventListener(dataEventListener());
@@ -53,12 +57,12 @@ public class HomeFragment extends Fragment {
         return new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                reviews = new ArrayList<>();
                 for (DataSnapshot ds : snapshot.getChildren()) {
                     ReviewViewModel reviewViewModel = ds.getValue(ReviewViewModel.class);
                     if (reviewViewModel != null) {
                         reviewViewModel.setReviewId(ds.getKey());
                         reviews.add(reviewViewModel);
+                        reviewAdapter.notifyDataSetChanged();
                     }
                 }
 
@@ -71,12 +75,12 @@ public class HomeFragment extends Fragment {
                                     if (userModel != null) {
                                         review.setShortId(userModel.getShortId());
                                         review.setFullName(userModel.getFullName());
+                                        reviewAdapter.notifyDataSetChanged();
                                     }
                                 });
                     }
 
                     Collections.shuffle(reviews);
-                    homeViewPager.setAdapter(new ReviewAdapter(reviews, getContext(), RECYCLE_VIEW_HOME));
                 }
             }
 
