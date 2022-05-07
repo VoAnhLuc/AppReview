@@ -37,4 +37,9 @@
     <string name="profile_following">Following</string>
     <string name="profile_edit_profile">Edit profile</string>
     <string name="profile_default_avatar_url"><![CDATA[https://firebasestorage.googleapis.com/v0/b/nextbeen-notech.appspot.com/o/avatar%2Fdefault_avatar.png?alt=media&token=35ec666f-fa6b-4abb-bbff-f80311ca3187]]></string>
+    <string name="post_content_hint">Enter your feeling about this address..</string>
+    <string name="post_title">GIVE US\nYOUR FEELING</string>
+    <string name="backend_post_current_address">CURRENT_ADDRESS</string>
+    <string name="post_add_photo">Add photo</string>
+    <string name="post_post_review">Post Review</string>
 </resources>

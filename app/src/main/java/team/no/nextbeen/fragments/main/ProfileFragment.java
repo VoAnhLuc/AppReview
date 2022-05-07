@@ -1,5 +1,7 @@
 package team.no.nextbeen.fragments.main;
 
+import static team.no.nextbeen.MainActivity.RECYCLE_VIEW_PROFILE;
+
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -72,7 +74,7 @@ public class ProfileFragment extends Fragment {
         ViewPager2 rcvPostList = requireView().findViewById(R.id.rcvPostList);
         rcvPostList.setOrientation(ViewPager2.ORIENTATION_HORIZONTAL);
         reviews = new ArrayList<>();
-        reviewAdapter = new ReviewAdapter(reviews, requireContext(), true);
+        reviewAdapter = new ReviewAdapter(reviews, requireContext(), RECYCLE_VIEW_PROFILE);
         rcvPostList.setAdapter(reviewAdapter);
 
         ImageView btnLogout = requireView().findViewById(R.id.btnLogout);

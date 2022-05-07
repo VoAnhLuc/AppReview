@@ -1,5 +1,7 @@
 package team.no.nextbeen;
 
+import static team.no.nextbeen.MainActivity.RECYCLE_VIEW_HOME;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
@@ -81,7 +83,7 @@ public class SearchResultActivity extends AppCompatActivity {
                     }
 
                     Collections.shuffle(reviews);
-                    vpResult.setAdapter(new ReviewAdapter(reviews, getApplicationContext(), false));
+                    vpResult.setAdapter(new ReviewAdapter(reviews, getApplicationContext(), RECYCLE_VIEW_HOME));
                 }
             }
 
