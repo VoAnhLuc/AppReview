@@ -49,6 +49,7 @@ public class ReviewViewHolder extends RecyclerView.ViewHolder {
 
         homeImageView.setOnClickListener(view -> {
             Intent intent = new Intent(context, DetailActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.putExtra("REVIEW", reviewViewModel);
             context.startActivity(intent);
         });

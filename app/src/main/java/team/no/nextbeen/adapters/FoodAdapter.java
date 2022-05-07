@@ -1,9 +1,12 @@
 package team.no.nextbeen.adapters;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,13 +14,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import team.no.nextbeen.R;
+import team.no.nextbeen.SearchResultActivity;
 import team.no.nextbeen.models.Food;
 
 public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder>{
     List<Food> foods;
-    public FoodAdapter( List<Food> foods)
+    private final Context mContext;
+    public FoodAdapter(Context mContext, List<Food> foods)
     {
         this.foods=foods;
+        this.mContext = mContext;
     }
 
     @NonNull
@@ -36,6 +42,11 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
         }
         holder.txt_item_search_nameFood.setText(food.getDistrict());
         holder.txt_item_search_totalFood.setText(food.getAmount() + " quan an");
+        holder.txt_item_search_nameFood.setOnClickListener(view -> {
+            Intent intent = new Intent(mContext, SearchResultActivity.class);
+            intent.putExtra("DISTRICT", food.getDistrict());
+            mContext.startActivity(intent);
+        });
     }
 
     @Override
