@@ -58,7 +58,7 @@
     <LinearLayout
         android:id="@+id/llImageView"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="30dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -78,12 +78,20 @@
         <GridView
             android:id="@+id/gvImages"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="150dp"
             android:gravity="center"
             android:numColumns="3"/>
 
     </LinearLayout>
 
-
+    <Button
+        android:id="@+id/btnPostReview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="@string/post_post_review"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/llImageView"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

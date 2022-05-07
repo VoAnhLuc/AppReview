@@ -1,5 +1,7 @@
 package team.no.nextbeen.fragments.main;
 
+import static team.no.nextbeen.MainActivity.RECYCLE_VIEW_HOME;
+
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -74,7 +76,7 @@ public class HomeFragment extends Fragment {
                     }
 
                     Collections.shuffle(reviews);
-                    homeViewPager.setAdapter(new ReviewAdapter(reviews, getContext(), false));
+                    homeViewPager.setAdapter(new ReviewAdapter(reviews, getContext(), RECYCLE_VIEW_HOME));
                 }
             }
 

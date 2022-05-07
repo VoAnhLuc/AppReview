@@ -31,6 +31,11 @@ import team.no.nextbeen.fragments.main.SearchFragment;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final Integer RECYCLE_VIEW_HOME = 0; // Home frag
+    public static final Integer RECYCLE_VIEW_PROFILE = 1; // Profile frag
+    public static final Integer RECYCLE_VIEW_POST = 2; // Post frag
+
+
     ActivityMainBinding binding;
     private LocationManager locationManager;
     private String currentAddress;

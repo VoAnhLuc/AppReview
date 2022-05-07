@@ -1,85 +1,84 @@
 package team.no.nextbeen.fragments.main;
 
 import static android.app.Activity.RESULT_OK;
-import static android.content.Context.LOCATION_SERVICE;
 
-import android.Manifest;
-import android.app.ProgressDialog;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.location.Address;
-import android.location.Geocoder;
-import android.location.Location;
-import android.location.LocationManager;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.fragment.app.Fragment;
 
-import android.provider.Settings;
+import android.provider.OpenableColumns;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.OnProgressListener;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
-import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
-import java.util.UUID;
 
 import team.no.nextbeen.MainActivity;
 import team.no.nextbeen.R;
+import team.no.nextbeen.adapters.ImageAdapter;
+import team.no.nextbeen.daos.DAOPhoto;
+import team.no.nextbeen.daos.DAOReview;
+import team.no.nextbeen.models.ReviewModel;
 
 public class PostFragment extends Fragment {
 
     private static final String REVIEW_SHARED_PREF = "REVIEW_SHARED_PREF";
     private static final String CONTENT_REVIEW = "CONTENT_REVIEW";
+
+    private FirebaseAuth mAuth;
+
     public String currentAddress;
-    private LocationManager locationManager;
-    private ImageView imageView;
-    private FirebaseStorage storage;
-    private StorageReference storageReference;
-    public Uri imageUri;
-    private Button button;
-    private EditText editTextTitle;
-    private EditText editTextContent;
-    private FirebaseDatabase fDatabase;
-    private DatabaseReference dRef;
 
     private SharedPreferences sharedPref;
     private EditText txtReviewContent;
     private EditText txtReviewAddress;
+    private ImageAdapter imageAdapter;
+
+    private List<String> photos = new ArrayList<>();
+
+    private final ActivityResultLauncher<Intent> photoActivityResultLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(), result -> {
+                if (result.getResultCode() == RESULT_OK) {
+                    Intent intent = result.getData();
+                    if (intent != null && intent.getClipData() != null) {
+                        int sizeOfClipData = intent.getClipData().getItemCount();
+                        int pos = 0;
+                        while (pos < sizeOfClipData) {
+                            Uri uri = intent.getClipData().getItemAt(pos).getUri();
+                            photos.add(uri.toString());
+                            pos++;
+                        }
+
+                        imageAdapter.notifyDataSetChanged();
+                        savePhotosToSharePref();
+                    }
+                }
+            });;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mAuth = FirebaseAuth.getInstance();
         sharedPref = requireContext().getSharedPreferences(REVIEW_SHARED_PREF, Context.MODE_PRIVATE);
     }
 
@@ -99,11 +98,25 @@ public class PostFragment extends Fragment {
             txtReviewAddress.setText(currentAddress);
             txtReviewContent.setText(sharedPref.getString(CONTENT_REVIEW, ""));
         }
+
+        GridView gvImages = requireView().findViewById(R.id.gvImages);
+        String json = sharedPref.getString("PHOTOS", "");
+        photos = new Gson().fromJson(json, new TypeToken<List<String>>() {}.getType());
+        if (photos == null) {
+            photos = new ArrayList<>();
+        }
+        imageAdapter = new ImageAdapter(photos, requireContext());
+        gvImages.setAdapter(imageAdapter);
     }
 
     @Override
     public void onStart() {
         super.onStart();
+
+        if (mAuth.getCurrentUser() == null) {
+            Toast.makeText(requireContext(), "Please login to share your feeling!", Toast.LENGTH_LONG).show();
+            ((MainActivity)requireActivity()).replaceFragment(new ProfileFragment());
+        }
 
         txtReviewAddress = requireView().findViewById(R.id.txtReviewAddress);
 
@@ -125,7 +138,39 @@ public class PostFragment extends Fragment {
 
         ImageView btnAddPhoto = requireView().findViewById(R.id.btnAddPhoto);
         btnAddPhoto.setOnClickListener(view -> {
+            Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+            intent.setType("image/*");
+            intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+            photoActivityResultLauncher.launch(intent);
+        });
 
+        Button btnPostReview = requireView().findViewById(R.id.btnPostReview);
+        btnPostReview.setOnClickListener(view -> {
+            List<String> images = new ArrayList<>();
+            DAOPhoto daoPhoto = new DAOPhoto();
+            for (String photo : photos) {
+
+                Uri uri = Uri.parse(photo);
+                String fileName =  System.currentTimeMillis() + "_" + getFileName(requireContext().getContentResolver(), uri);
+
+                daoPhoto.uploadPhotoAsync(uri, fileName).addOnSuccessListener(taskSnapshot -> {
+                    daoPhoto.getPhotoURL(fileName).addOnSuccessListener(uri1 -> {
+                        images.add(uri1.toString());
+
+                        if (images.size() == photos.size()) {
+                            String address = txtReviewAddress.getText().toString();
+                            String content = txtReviewContent.getText().toString();
+                            ReviewModel reviewModel = new ReviewModel(mAuth.getUid(), content, address, images);
+                            DAOReview daoReview = new DAOReview();
+                            daoReview.addReviewAsync(reviewModel).addOnSuccessListener(unused -> {
+                                sharedPref.edit().clear().apply();
+                                Toast.makeText(getContext(), "Your review is on air now!", Toast.LENGTH_LONG).show();
+                                ((MainActivity)requireActivity()).replaceFragment(new HomeFragment());
+                            });
+                        }
+                    });
+                });
+            }
         });
     }
 
@@ -133,5 +178,22 @@ public class PostFragment extends Fragment {
         SharedPreferences.Editor editor = sharedPref.edit();
         editor.putString("CONTENT_REVIEW", txtReviewContent.getText().toString());
         editor.apply();
+    }
+
+    private void savePhotosToSharePref() {
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString("PHOTOS", new Gson().toJson(photos));
+        editor.apply();
+    }
+
+    private String getFileName(ContentResolver resolver, Uri uri) {
+        Cursor returnCursor =
+                resolver.query(uri, null, null, null, null);
+        assert returnCursor != null;
+        int nameIndex = returnCursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);
+        returnCursor.moveToFirst();
+        String name = returnCursor.getString(nameIndex);
+        returnCursor.close();
+        return name;
     }
 }

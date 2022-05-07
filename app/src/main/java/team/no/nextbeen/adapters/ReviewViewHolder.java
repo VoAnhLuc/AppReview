@@ -20,6 +20,7 @@ import team.no.nextbeen.viewmodels.ReviewViewModel;
 public class ReviewViewHolder extends RecyclerView.ViewHolder {
     private final ImageView homeImageView;
     private final TextView homeImageTitle, homeImageDesc;
+    private final LinearLayout homeLinearLayout;
 
     public ReviewViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -28,18 +29,19 @@ public class ReviewViewHolder extends RecyclerView.ViewHolder {
         homeImageTitle = itemView.findViewById(R.id.homeImageTitle);
         homeImageDesc = itemView.findViewById(R.id.homeImageDesc);
 
-        LinearLayout homeLinearLayout = itemView.findViewById(R.id.homeLinearLayout);
+        homeLinearLayout = itemView.findViewById(R.id.homeLinearLayout);
         homeLinearLayout.bringToFront();
     }
 
-    public void setData(ReviewViewModel reviewViewModel, Context context, boolean isProfileView) {
-        if (!isProfileView) {
+    public void setData(ReviewViewModel reviewViewModel, Context context, Integer type) {
+        if (type == 0) {
             Picasso.get().load(reviewViewModel.getImages().get(0)).into(homeImageView);
         }
-        else {
+        else if (type == 1) {
             Picasso.get().load(reviewViewModel.getImages().get(0)).fit().centerCrop().into(homeImageView);
             homeImageTitle.setVisibility(View.GONE);
         }
+
         homeImageTitle.setText(reviewViewModel.getFullName());
         homeImageDesc.setText(reviewViewModel.getShortDesc(40));
 

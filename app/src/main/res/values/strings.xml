@@ -41,4 +41,5 @@
     <string name="post_title">GIVE US\nYOUR FEELING</string>
     <string name="backend_post_current_address">CURRENT_ADDRESS</string>
     <string name="post_add_photo">Add photo</string>
+    <string name="post_post_review">Post Review</string>
 </resources>
