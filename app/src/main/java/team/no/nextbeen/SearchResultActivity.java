@@ -1,14 +1,15 @@
-package team.no.nextbeen.fragments.main;
-
-import android.os.Bundle;
+package team.no.nextbeen;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
-import android.view.LayoutInflater;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -17,34 +18,40 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
-import team.no.nextbeen.R;
 import team.no.nextbeen.adapters.ReviewAdapter;
 import team.no.nextbeen.daos.DAOReview;
 import team.no.nextbeen.daos.DAOUser;
 import team.no.nextbeen.models.UserModel;
 import team.no.nextbeen.viewmodels.ReviewViewModel;
 
-public class HomeFragment extends Fragment {
-    ViewPager2 homeViewPager;
+public class SearchResultActivity extends AppCompatActivity {
+
     private List<ReviewViewModel> reviews;
+    private ViewPager2 vpResult;
+    private String district;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
-    }
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_search_result);
 
-    @Override
-    public void onStart() {
-        super.onStart();
+        Intent intent = getIntent();
+        district = intent.getStringExtra("DISTRICT");
 
-        homeViewPager = requireView().findViewById(R.id.homeViewPager);
+        LinearLayout llSearchResult = findViewById(R.id.llSearchResult);
+        llSearchResult.bringToFront();
 
+        TextView txtDistrict = findViewById(R.id.txtDistrict);
+        txtDistrict.setText(district);
+
+        ImageButton btnGoBack = findViewById(R.id.btnGoBack);
+        btnGoBack.setOnClickListener(view -> finish());
+
+        vpResult = findViewById(R.id.vpResult);
         DAOReview daoReview = new DAOReview();
         daoReview.getDatabaseReference().addValueEventListener(dataEventListener());
-
     }
 
     private ValueEventListener dataEventListener() {
@@ -54,7 +61,7 @@ public class HomeFragment extends Fragment {
                 reviews = new ArrayList<>();
                 for (DataSnapshot ds : snapshot.getChildren()) {
                     ReviewViewModel reviewViewModel = ds.getValue(ReviewViewModel.class);
-                    if (reviewViewModel != null) {
+                    if (reviewViewModel != null && reviewViewModel.getAddress().toLowerCase(Locale.ROOT).contains(district.toLowerCase(Locale.ROOT))) {
                         reviewViewModel.setReviewId(ds.getKey());
                         reviews.add(reviewViewModel);
                     }
@@ -74,7 +81,7 @@ public class HomeFragment extends Fragment {
                     }
 
                     Collections.shuffle(reviews);
-                    homeViewPager.setAdapter(new ReviewAdapter(reviews, requireContext(), false));
+                    vpResult.setAdapter(new ReviewAdapter(reviews, getApplicationContext(), false));
                 }
             }
 

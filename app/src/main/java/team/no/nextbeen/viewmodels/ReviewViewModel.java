@@ -1,12 +1,14 @@
 package team.no.nextbeen.viewmodels;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class ReviewViewModel {
-    private String shortId, fullName, author, content, address;
+public class ReviewViewModel implements Serializable {
+    private String reviewId, shortId, fullName, author, content, address;
     private List<String> images;
 
-    public ReviewViewModel(String shortId, String fullName, String author, String content, String address, List<String> images) {
+    public ReviewViewModel(String reviewId, String shortId, String fullName, String author, String content, String address, List<String> images) {
+        this.reviewId = reviewId;
         this.shortId = shortId;
         this.fullName = fullName;
         this.author = author;
@@ -70,5 +72,13 @@ public class ReviewViewModel {
 
     public String getShortDesc(int length) {
         return content.substring(0, Math.min(length, content.length())) + "...";
+    }
+
+    public String getReviewId() {
+        return reviewId;
+    }
+
+    public void setReviewId(String reviewId) {
+        this.reviewId = reviewId;
     }
 }
