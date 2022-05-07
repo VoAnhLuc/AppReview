@@ -1,22 +1,30 @@
-package team.no.nextbeen.models;
+package team.no.nextbeen.viewmodels;
 
-import java.time.LocalDate;
+import java.util.List;
 
-public class UserModel {
+public class UserViewModel {
     private String id, fullName, shortId, email, bio, avatar;
-    private LocalDate dayOfBirth;
+    private List<ReviewViewModel> posts;
 
-    public UserModel(String id, String fullName, String shortId, String email, String bio, String avatar, LocalDate dayOfBirth) {
+    public UserViewModel(String id, String fullName, String shortId, String email, String bio, String avatar, List<ReviewViewModel> posts) {
         this.id = id;
         this.fullName = fullName;
         this.shortId = shortId;
         this.email = email;
         this.bio = bio;
         this.avatar = avatar;
-        this.dayOfBirth = dayOfBirth;
+        this.posts = posts;
     }
 
-    public UserModel() {}
+    public UserViewModel() {}
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getFullName() {
         return fullName;
@@ -42,20 +50,12 @@ public class UserModel {
         this.email = email;
     }
 
-    public LocalDate getDayOfBirth() {
-        return dayOfBirth;
+    public List<ReviewViewModel> getPosts() {
+        return posts;
     }
 
-    public void setDayOfBirth(LocalDate dayOfBirth) {
-        this.dayOfBirth = dayOfBirth;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
+    public void setPosts(List<ReviewViewModel> posts) {
+        this.posts = posts;
     }
 
     public String getBio() {

@@ -16,10 +16,12 @@ import team.no.nextbeen.viewmodels.ReviewViewModel;
 public class ReviewAdapter extends RecyclerView.Adapter<ReviewViewHolder> {
     private final List<ReviewViewModel> reviewViewModels;
     private final Context context;
+    private final boolean isProfileView;
 
-    public ReviewAdapter(List<ReviewViewModel> reviewViewModels, Context context) {
+    public ReviewAdapter(List<ReviewViewModel> reviewViewModels, Context context, boolean isProfileView) {
         this.reviewViewModels = reviewViewModels;
         this.context = context;
+        this.isProfileView = isProfileView;
     }
 
     @NonNull
@@ -32,7 +34,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ReviewViewHolder holder, int position) {
-        holder.setData(reviewViewModels.get(position), context);
+        holder.setData(reviewViewModels.get(position), context, isProfileView);
     }
 
     @Override

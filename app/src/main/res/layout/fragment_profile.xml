@@ -1,17 +1,203 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.main.ProfileFragment">
 
-    <Button
-        android:id="@+id/buttonAuthorize"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/auth_profile"
-        android:visibility="gone"
-        />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constrain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imgUserAvatar"
+            android:layout_width="87dp"
+            android:layout_height="92dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="64dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/default_avatar"
+            android:contentDescription="@string/profile_your_avatar" />
+
+        <TextView
+            android:id="@+id/txtUserName"
+            android:layout_width="wrap_content"
+            android:layout_height="28dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/profile_username"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.052"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="26dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/ic_dropdown"
+            app:layout_constraintStart_toEndOf="@+id/txtUserName"
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/app_name" />
+
+        <ImageView
+            android:id="@+id/btnLogout"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/ic_baseline_login_24"
+            android:backgroundTint="@color/orange"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/profile_menu" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="261dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="90dp"
+            app:layout_constraintStart_toEndOf="@+id/imgUserAvatar"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="87dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txtUserPosts"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/profile_default_value"
+                        android:textSize="20sp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/profile_posts"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="87dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txtUserFollowers"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/profile_default_value"
+                        android:textSize="20sp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/profile_followers"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="87dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txtUserFollowing"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/profile_default_value"
+                        android:textSize="20sp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/profile_following"/>
+
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/txtUserFullName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="12dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:text="@string/app_name"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgUserAvatar" />
+
+        <TextView
+            android:id="@+id/txtUserBio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:paddingBottom="3dp"
+            android:text="@string/app_desc"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtUserFullName" />
+
+        <Button
+            android:id="@+id/btnEditProfile"
+            android:layout_width="200dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/profile_edit_profile"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtUserBio" />
+
+        <Space
+            android:id="@+id/space"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="8dp"
+            android:backgroundTint="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnEditProfile">
+
+        </Space>
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/rcvPostList"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/space"
+            android:layout_marginTop="1dp"
+            android:padding="16dp"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

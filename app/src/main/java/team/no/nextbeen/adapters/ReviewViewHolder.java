@@ -32,8 +32,14 @@ public class ReviewViewHolder extends RecyclerView.ViewHolder {
         homeLinearLayout.bringToFront();
     }
 
-    public void setData(ReviewViewModel reviewViewModel, Context context) {
-        Picasso.get().load(reviewViewModel.getImages().get(0)).into(homeImageView);
+    public void setData(ReviewViewModel reviewViewModel, Context context, boolean isProfileView) {
+        if (!isProfileView) {
+            Picasso.get().load(reviewViewModel.getImages().get(0)).into(homeImageView);
+        }
+        else {
+            Picasso.get().load(reviewViewModel.getImages().get(0)).fit().centerCrop().into(homeImageView);
+            homeImageTitle.setVisibility(View.GONE);
+        }
         homeImageTitle.setText(reviewViewModel.getFullName());
         homeImageDesc.setText(reviewViewModel.getShortDesc(40));
 
