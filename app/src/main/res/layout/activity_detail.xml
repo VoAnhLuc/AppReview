@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    tools:context=".DetailActivity">
+
+    <FrameLayout
+        android:id="@+id/flHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/btnGoBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:background="#00FFFFFF"
+            android:src="@drawable/ic_baseline_arrow_back_30"
+            android:contentDescription="@string/detail_go_back" />
+
+        <!-- This is for rating review, handle later
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <ImageButton
+                android:id="@+id/btnUpVote"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#00FFFFFF"
+                android:src="@drawable/ic_baseline_arrow_drop_up_30"
+                android:contentDescription="@string/detail_up_vote"/>
+
+            <TextView
+                android:id="@+id/txtTotalRating"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:text="123"
+                android:textSize="20sp" />
+
+            <ImageButton
+                android:id="@+id/btnDownVote"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#00FFFFFF"
+                android:src="@drawable/ic_baseline_arrow_drop_down_30"
+                android:contentDescription="@string/detail_down_vote"/>
+
+        </LinearLayout>
+        -->
+
+        <ImageButton
+            android:id="@+id/btnTakeMark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:background="#00FFFFFF"
+            android:src="@drawable/ic_baseline_star_30"
+            android:contentDescription="@string/detail_mark_as_note" />
+
+    </FrameLayout>
+
+    <GridView
+        android:id="@+id/gvImages"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:numColumns="3"
+        app:layout_constraintTop_toBottomOf="@+id/flHeader"/>
+
+    <LinearLayout
+        android:id="@+id/llContentReview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white_opacity_30"
+        android:orientation="vertical"
+        android:padding="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/gvImages"
+        app:layout_constraintVertical_bias="1.0"
+        tools:layout_editor_absoluteX="9dp">
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/txtLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingVertical="5dp"
+                android:text="@string/app_name"
+                app:drawableLeftCompat="@drawable/ic_baseline_location_on_16" />
+        </HorizontalScrollView>
+
+        <TextView
+            android:id="@+id/txtUserFullName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <ScrollView
+            android:id="@+id/svContent"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="0.3">
+
+            <TextView
+                android:id="@+id/txtContentReview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp" />
+
+        </ScrollView>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
