@@ -28,4 +28,13 @@
     <string name="detail_down_vote">Down vote</string>
     <string name="detail_up_vote">Up vote</string>
     <string name="detail_go_back">Go back</string>
+    <string name="profile_your_avatar">Your avatar</string>
+    <string name="profile_username">Username</string>
+    <string name="profile_menu">Profile menu</string>
+    <string name="profile_default_value">0</string>
+    <string name="profile_posts">Posts</string>
+    <string name="profile_followers">Followers</string>
+    <string name="profile_following">Following</string>
+    <string name="profile_edit_profile">Edit profile</string>
+    <string name="profile_default_avatar_url"><![CDATA[https://firebasestorage.googleapis.com/v0/b/nextbeen-notech.appspot.com/o/avatar%2Fdefault_avatar.png?alt=media&token=35ec666f-fa6b-4abb-bbff-f80311ca3187]]></string>
 </resources>
