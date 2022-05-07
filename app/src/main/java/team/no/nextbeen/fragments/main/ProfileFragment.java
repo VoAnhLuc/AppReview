@@ -91,6 +91,7 @@ public class ProfileFragment extends Fragment {
             });
             rcvPostList.setVisibility(View.GONE);
             btnLogout.setVisibility(View.INVISIBLE);
+            Picasso.get().load(getString(R.string.profile_default_avatar_url)).fit().centerCrop().into(imgUserAvatar);
         }
         else {
             DAOUser daoUser = new DAOUser();
@@ -98,7 +99,7 @@ public class ProfileFragment extends Fragment {
                     .addOnSuccessListener(dataSnapshot -> {
                         user = dataSnapshot.getValue(UserViewModel.class);
                         if (user != null) {
-                            txtUserName.setText(user.getShortId());
+                            txtUserName.setText(user.getShortId().substring(Math.min(user.getShortId().length(), 15)));
                             txtUserFullName.setText(user.getFullName());
                             txtUserBio.setText(user.getBio());
 

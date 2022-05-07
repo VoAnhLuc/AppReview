@@ -86,6 +86,8 @@ public class RegisterFragment extends Fragment {
                            UserModel user = new UserModel();
                            user.setEmail(email);
                            user.setId(mAuth.getCurrentUser().getUid());
+                           user.setShortId(mAuth.getCurrentUser().getUid());
+                           user.setBio(getString(R.string.app_desc));
                            user.setFullName(fullName);
 
                            DAOUser daoUser = new DAOUser();
